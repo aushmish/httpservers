@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function sendRequest(){
+            axios.post("http://localhost:5000/sum",{
+                a:document.getElementById('firstValue').value,
+                b:document.getElementById('secondValue').value
+            })
+
+            .then(response => {
+            console.log("Sum from server:", response.data.ans);
+            // Optionally, also display it on the page
+            document.getElementById('result').innerText = "Sum: " + response.data.ans;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="First value" id="firstValue"></input>
+    <input type="text" placeholder="First value" id="secondValue"></input>
+    <button onclick="sendRequest()">Sum</button>
+</body>
+</html>
